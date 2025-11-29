@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>PP — LTPS Confetti Edition</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="app">
+    <header>
+        <div class="logo-area">
+            <div class="logo" onclick="confetti()">🎉</div>
+            <div>
+                <h1 style="margin:0; font-size:18px">Powerful Planner</h1>
+                <div style="font-size:12px; color:var(--muted)">LTPS Edition (with Confetti)</div>
+            </div>
+        </div>
+        <button class="btn-ghost" id="themeToggle" style="height:32px">Theme</button>
+    </header>
+
+    <main>
+        <div class="card" style="margin-bottom: 24px;">
+            <h3 style="margin:0 0 12px 0; font-size:16px;">Add Subject</h3>
+            <div class="main-inputs">
+                <input type="text" id="inName" placeholder="Subject Name" style="text-align:left; padding:10px;">
+                <input type="number" id="inReq" placeholder="Req %" value="75">
+                <button class="btn-primary" id="btnAdd">Add Subject</button>
+            </div>
+
+            <div class="ltps-grid">
+                <div class="ltps-col">
+                    <span class="ltps-label">Lecture (1.0)</span>
+                    <div class="ltps-inputs">
+                        <input type="number" id="inL_att" placeholder="Att">
+                        <input type="number" id="inL_tot" placeholder="Tot">
+                    </div>
+                </div>
+                <div class="ltps-col">
+                    <span class="ltps-label">Tutorial (0.25)</span>
+                    <div class="ltps-inputs">
+                        <input type="number" id="inT_att" placeholder="Att">
+                        <input type="number" id="inT_tot" placeholder="Tot">
+                    </div>
+                </div>
+                <div class="ltps-col">
+                    <span class="ltps-label">Practical (0.5)</span>
+                    <div class="ltps-inputs">
+                        <input type="number" id="inP_att" placeholder="Att">
+                        <input type="number" id="inP_tot" placeholder="Tot">
+                    </div>
+                </div>
+                <div class="ltps-col">
+                    <span class="ltps-label">Skilling (0.25)</span>
+                    <div class="ltps-inputs">
+                        <input type="number" id="inS_att" placeholder="Att">
+                        <input type="number" id="inS_tot" placeholder="Tot">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="subjectList"></div>
+    </main>
+
+    <aside>
+        <div class="card" style="position:sticky; top:20px;">
+            <div class="score-circle" id="overallCircle">
+                <div class="score-val" id="overallVal">0%</div>
+                <div class="score-label">Weighted Avg</div>
+            </div>
+            <div id="statBox" style="padding: 12px; background:var(--glass); border-radius:10px; font-size:13px; color:var(--muted); margin-bottom:16px;">
+                Add subjects to see your safety margin.
+            </div>
+            <button class="btn-ghost" onclick="clearData()" style="width:100%">Reset All Data</button>
+        </div>
+    </aside>
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
