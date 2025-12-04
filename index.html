@@ -4,55 +4,75 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Powerful Planner — Home</title>
+
+  <!-- Inter Font -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Stylesheet -->
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body class="apple-black">
+
+  <!-- NAVBAR -->
   <header class="nav">
     <div class="nav-left">
       <div class="brand">Powerful<span class="dot">•</span>Planner</div>
     </div>
+
     <nav class="nav-center">
       <a href="index.html" class="nav-link active">Home</a>
       <a href="app.html" class="nav-link">App</a>
       <a href="#features" class="nav-link">Features</a>
       <a href="#about" class="nav-link">About</a>
     </nav>
+
     <div class="nav-right">
       <a class="btn-ghost" href="app.html">Open App</a>
     </div>
   </header>
 
+  <!-- HERO SECTION -->
   <main class="hero">
     <h1 class="hero-title">Powerful Planner</h1>
-    <p class="hero-sub">Smart timetable · Real-time LTPS attendance · Clean, private, browser-first</p>
-    <div style="margin-top:28px;">
+    <p class="hero-sub">
+      Smart timetable · Real-time LTPS attendance · Clean, private, browser-first
+    </p>
+
+    <div style="margin-top:32px;">
       <a class="cta" href="app.html">Open Calculator</a>
       <a class="cta ghost" href="#features" style="margin-left:12px">Learn more</a>
     </div>
   </main>
 
-  <section id="features" class="cards">
-    <div class="card small">
+  <!-- FEATURE CARDS (CENTERED + JIGEL GLOW) -->
+  <section id="features" class="cards apple-center">
+
+    <div class="card small jiggle-color">
       <h3>Timetable</h3>
       <p>Upload or create a weekly timetable. Repeats every week. Notifications before class.</p>
     </div>
-    <div class="card small">
+
+    <div class="card small jiggle-color">
       <h3>Attendance</h3>
       <p>General, KL (LTPS weighted), and custom calculators. Live subject trackers and bunk planner.</p>
     </div>
-    <div class="card small">
+
+    <div class="card small jiggle-color">
       <h3>Privacy</h3>
       <p>All data stored locally in your browser — no server, no account required.</p>
     </div>
+
   </section>
 
+  <!-- FOOTER -->
   <footer class="footer">
     <div>© <span id="year"></span> Powerful Planner — Local-first · LTPS</div>
   </footer>
 
-<script>
-  document.getElementById('year').textContent = new Date().getFullYear();
-</script>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+
 </body>
 </html>
