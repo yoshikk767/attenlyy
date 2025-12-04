@@ -37,3 +37,12 @@
   transform: translateY(-6px) scale(1.03);
   box-shadow: 0 14px 40px rgba(0, 0, 0, 0.6);
 }
+.cards.apple-center {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 28px;
+  padding: 40px 0;
+  text-align: center;
+}
+
