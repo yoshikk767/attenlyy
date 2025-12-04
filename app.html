@@ -3,99 +3,99 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Powerful Planner — App</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <title>Powerful Planner</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <link rel="stylesheet" href="style.css">
 </head>
-<body class="apple-black app-page">
-  <header class="nav nav-small">
-    <div class="nav-left">
-      <div class="brand">Powerful<span class="dot">•</span>Planner</div>
-    </div>
+<body class="apple-black">
+  
+  <header class="nav">
+    <div class="brand">Powerful<span class="dot">•</span>Planner</div>
     <nav class="nav-center">
-      <a href="index.html" class="nav-link">Home</a>
-      <a href="app.html" class="nav-link active">App</a>
+      <a href="#" class="nav-link active">Dashboard</a>
+      <a href="#" class="nav-link">Settings</a>
     </nav>
-    <div class="nav-right">
-      <button id="notifBtn" class="btn-ghost">Enable Notifications</button>
+    <div style="display:flex; gap:10px;">
+      <button id="notifBtn" class="btn-ghost">🔔 Notify</button>
       <button id="themeToggle" class="btn-ghost">Theme</button>
     </div>
   </header>
 
-  <div class="container grid">
+  <div class="container">
     <main class="panel">
-      <!-- Timetable -->
+      
+      <section class="panel-card">
+        <h2>Add Subject</h2>
+        <div class="row">
+          <input id="inName" placeholder="Subject Name (e.g., Mathematics)" class="input" />
+          <input id="inReq" type="number" placeholder="Req %" class="input small" value="75" style="width: 80px;" />
+          <button id="btnAdd" class="btn-primary">Add Subject</button>
+        </div>
+        
+        <div class="ltps-grid">
+          <div class="ltps-col"><label>Lecture</label><input id="inL_att" placeholder="Att"><input id="inL_tot" placeholder="Tot"></div>
+          <div class="ltps-col"><label>Tutorial</label><input id="inT_att" placeholder="Att"><input id="inT_tot" placeholder="Tot"></div>
+          <div class="ltps-col"><label>Practical</label><input id="inP_att" placeholder="Att"><input id="inP_tot" placeholder="Tot"></div>
+          <div class="ltps-col"><label>Skilling</label><input id="inS_att" placeholder="Att"><input id="inS_tot" placeholder="Tot"></div>
+        </div>
+      </section>
+
       <section class="panel-card">
         <div class="panel-head">
           <h2>Weekly Timetable</h2>
           <div class="controls">
-            <button id="btnAddRow" class="btn-sm">Add Row</button>
-            <input id="uploadTT" type="file" accept=".json,.csv" class="file-input">
+             <input id="uploadTT" type="file" accept=".json,.csv" style="display:none">
+            <button onclick="document.getElementById('uploadTT').click()" class="btn-ghost">Import</button>
             <button id="exportTT" class="btn-ghost">Export</button>
-            <button id="resetTT" class="btn-danger">Reset</button>
+            <button id="btnAddRow" class="btn-sm" style="background: var(--primary)">+ Row</button>
           </div>
         </div>
         <div id="timetableContainer" class="tt-wrap"></div>
-      </section>
-
-      <!-- Quick add -->
-      <section class="panel-card">
-        <h2>Quick Subject</h2>
-        <div class="row">
-          <input id="inName" placeholder="Subject name" class="input" />
-          <input id="inReq" type="number" placeholder="Req %" class="input small" value="75" />
-          <button id="btnAdd" class="btn-primary">Add</button>
-        </div>
-
-        <div class="ltps-grid compact">
-          <div class="ltps-col"><label>Lecture</label><input id="inL_att" placeholder="att"><input id="inL_tot" placeholder="tot"></div>
-          <div class="ltps-col"><label>Tutorial</label><input id="inT_att" placeholder="att"><input id="inT_tot" placeholder="tot"></div>
-          <div class="ltps-col"><label>Practical</label><input id="inP_att" placeholder="att"><input id="inP_tot" placeholder="tot"></div>
-          <div class="ltps-col"><label>Skilling</label><input id="inS_att" placeholder="att"><input id="inS_tot" placeholder="tot"></div>
+        <div style="margin-top:10px; text-align:right">
+            <button id="resetTT" class="btn-danger">Clear Timetable</button>
         </div>
       </section>
 
-      <!-- Calculators -->
       <section class="panel-card">
         <h2>Calculators</h2>
         <div class="seg">
           <button id="calcGeneral" class="seg-btn active">General</button>
           <button id="calcKL" class="seg-btn">KL (LTPS)</button>
           <button id="calcCustom" class="seg-btn">Custom</button>
-          <button id="calcAbsent" class="seg-btn">Simulate Absents</button>
+          <button id="calcAbsent" class="seg-btn">Absent Sim</button>
         </div>
         <div id="calcArea" class="calc-area"></div>
       </section>
 
-      <!-- Subject list -->
-      <section id="subjectList" class="panel-card"></section>
+      <section id="subjectList" class="panel"></section>
     </main>
 
     <aside class="side">
       <div class="panel-card sticky">
         <div class="score">
           <div id="overallVal" class="score-val">0%</div>
-          <div class="score-label">Aggregate</div>
+          <div class="score-label">Total Aggregate</div>
         </div>
-        <div id="statBox" class="stat">Add subjects & timetable</div>
-        <button class="btn-ghost full" onclick="clearData()">Reset Data</button>
+        <div id="statBox" class="stat">Add subjects & timetable to start</div>
+        <button class="btn-danger" style="width:100%" onclick="clearData()">Reset All Data</button>
       </div>
     </aside>
   </div>
 
-  <!-- Modal -->
   <div id="modalRoot" class="modal" style="display:none">
     <div id="modalBg" class="modal-bg"></div>
     <div class="modal-card">
       <div id="modalContent"></div>
-      <div class="modal-actions">
+      <div class="modal-actions" style="margin-top:20px; display:flex; justify-content:flex-end; gap:10px;">
         <button id="modalCancel" class="btn-ghost">Cancel</button>
         <button id="modalConfirm" class="btn-primary">Confirm</button>
       </div>
     </div>
   </div>
 
-<script src="script.js"></script>
+  <div id="toast-container"></div>
+
+  <script src="script.js"></script>
 </body>
 </html>
