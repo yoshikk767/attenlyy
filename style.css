@@ -1,194 +1,220 @@
 /* ----------------------------------------------------------
-   GLOBAL VARIABLES
+   1. CORE & THEME
 ---------------------------------------------------------- */
 :root {
-  --radius: 18px;
-  --text: #ffffff;
-  --muted: #b4b4b4;
-  --bg: #000;
-  --card-bg: rgba(20, 20, 20, 0.7);
+  --font-stack: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --bg-body: #050505;
+  --bg-panel: rgba(28, 28, 30, 0.65);
+  --bg-input: rgba(255, 255, 255, 0.08);
+  --border-light: rgba(255, 255, 255, 0.1);
+  --primary: #6366f1;
+  --primary-hover: #4f46e5;
+  --danger: #ef4444;
+  --success: #10b981;
+  --warning: #f59e0b;
+  --text-main: #ffffff;
+  --text-muted: #a1a1aa;
+  --radius-lg: 20px;
+  --radius-sm: 10px;
+  --shadow-card: 0 10px 40px -10px rgba(0,0,0,0.5);
 }
 
-/* ----------------------------------------------------------
-   BASE / THEME
----------------------------------------------------------- */
+* { box-sizing: border-box; }
+
 body.apple-black {
-  background: var(--bg);
-  color: var(--text);
+  background-color: var(--bg-body);
+  /* Subtle mesh gradient background */
+  background-image: 
+    radial-gradient(circle at 15% 50%, rgba(99, 102, 241, 0.08), transparent 25%), 
+    radial-gradient(circle at 85% 30%, rgba(168, 85, 247, 0.08), transparent 25%);
+  color: var(--text-main);
   margin: 0;
-  padding: 0;
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-stack);
   -webkit-font-smoothing: antialiased;
-}
-
-a {
-  color: #8baaff;
-  text-decoration: none;
-  font-weight: 500;
-}
-
-a:hover {
-  opacity: 0.8;
+  min-height: 100vh;
 }
 
 /* ----------------------------------------------------------
-   NAVBAR
+   2. NAVBAR
 ---------------------------------------------------------- */
 .nav {
-  width: 100%;
-  padding: 18px 32px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: sticky;
-  top: 0;
-  background: rgba(0,0,0,0.8);
-  backdrop-filter: blur(12px);
-  z-index: 100;
+  padding: 16px 32px;
+  background: rgba(5, 5, 5, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border-light);
 }
 
-.brand {
-  font-size: 20px;
-  font-weight: 700;
-}
+.brand { font-size: 18px; font-weight: 700; letter-spacing: -0.5px; }
+.dot { color: var(--primary); margin: 0 2px; }
 
-.dot {
-  color: #7c7cfe;
-}
-
-.nav-center {
-  display: flex;
-  gap: 28px;
-}
-
-.nav-link {
-  color: var(--muted);
-  font-size: 15px;
-  transition: .2s ease;
-}
-
-.nav-link:hover,
-.nav-link.active {
-  color: var(--text);
-}
+.nav-center { display: flex; gap: 30px; }
+.nav-link { color: var(--text-muted); font-size: 14px; font-weight: 500; transition: 0.2s; text-decoration: none;}
+.nav-link:hover, .nav-link.active { color: var(--text-main); }
 
 .btn-ghost {
-  padding: 8px 18px;
-  border-radius: 10px;
-  border: 1px solid rgba(255,255,255,0.15);
-  color: var(--text);
   background: transparent;
-  transition: .25s ease;
+  border: 1px solid var(--border-light);
+  color: var(--text-muted);
+  padding: 8px 16px;
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  cursor: pointer;
+  transition: 0.2s;
 }
-
-.btn-ghost:hover {
-  background: rgba(255,255,255,0.07);
-}
+.btn-ghost:hover { background: rgba(255,255,255,0.05); color: #fff; border-color: rgba(255,255,255,0.2); }
 
 /* ----------------------------------------------------------
-   HERO SECTION
+   3. LAYOUT GRID
 ---------------------------------------------------------- */
-.hero {
-  text-align: center;
-  padding: 120px 20px 60px;
-}
-
-.hero-title {
-  font-size: 58px;
-  font-weight: 800;
-  margin: 0 0 16px;
-}
-
-.hero-sub {
-  font-size: 18px;
-  color: var(--muted);
-  max-width: 600px;
+.container {
+  max-width: 1200px;
   margin: 0 auto;
+  padding: 30px 20px;
+  display: grid;
+  grid-template-columns: 1fr 320px; /* Main content | Sidebar */
+  gap: 24px;
 }
 
-.cta {
-  display: inline-block;
-  padding: 12px 26px;
-  background: #6366f1;
-  border-radius: 12px;
+@media (max-width: 900px) {
+  .container { grid-template-columns: 1fr; }
+}
+
+.panel { display: flex; flex-direction: column; gap: 24px; }
+.side { display: flex; flex-direction: column; gap: 24px; }
+.sticky { position: sticky; top: 100px; }
+
+/* ----------------------------------------------------------
+   4. CARDS & PANELS
+---------------------------------------------------------- */
+.panel-card {
+  background: var(--bg-panel);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  box-shadow: var(--shadow-card);
+  backdrop-filter: blur(12px);
+}
+
+h2 { margin: 0 0 20px 0; font-size: 18px; font-weight: 600; letter-spacing: -0.3px; }
+
+/* ----------------------------------------------------------
+   5. INPUTS & BUTTONS
+---------------------------------------------------------- */
+.row { display: flex; gap: 10px; margin-bottom: 16px; }
+
+.input {
+  background: var(--bg-input);
+  border: 1px solid transparent;
   color: #fff;
+  padding: 10px 14px;
+  border-radius: 8px;
+  outline: none;
+  font-family: inherit;
+  transition: 0.2s;
+  width: 100%;
+}
+.input:focus { background: rgba(255,255,255,0.12); border-color: var(--primary); }
+.input.small { padding: 8px 12px; font-size: 13px; }
+
+.btn-primary {
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
   font-weight: 600;
-  transition: .25s ease;
+  cursor: pointer;
+  transition: 0.2s;
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
 }
+.btn-primary:hover { background: var(--primary-hover); transform: translateY(-1px); }
 
-.cta:hover {
-  opacity: 0.85;
-}
+.btn-sm { padding: 6px 12px; font-size: 12px; background: rgba(255,255,255,0.1); border:none; color:#fff; border-radius:6px; cursor:pointer; }
+.btn-sm:hover { background: rgba(255,255,255,0.2); }
 
-.cta.ghost {
-  background: transparent;
-  border: 1px solid rgba(255,255,255,0.15);
-}
+.btn-danger { background: rgba(239, 68, 68, 0.15); color: #fca5a5; border: 1px solid rgba(239, 68, 68, 0.3); padding: 6px 12px; border-radius: 6px; cursor: pointer; }
+.btn-danger:hover { background: rgba(239, 68, 68, 0.25); }
 
 /* ----------------------------------------------------------
-   FEATURE CARDS
+   6. TIMETABLE STYLING
 ---------------------------------------------------------- */
-.cards.apple-center {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 32px;
-  padding: 40px 0 90px;
-  text-align: center;
-}
+.panel-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+.controls { display: flex; gap: 8px; }
 
-/* Base card style */
-.card {
-  width: 300px;
-  padding: 26px;
-  border-radius: var(--radius);
-  background: var(--card-bg);
-  backdrop-filter: blur(8px);
-  color: var(--text);
-  box-shadow: 0 0 22px rgba(0,0,0,0.35);
-}
+.tt-wrap { overflow-x: auto; }
+h4 { margin: 16px 0 8px; font-size: 13px; text-transform: uppercase; color: var(--primary); letter-spacing: 1px; }
 
-/* ----------------------------------------------------------
-   JIGEL JIGEL — Soft Colorful Glow (Style B)
----------------------------------------------------------- */
-.jiggle-color {
-  position: relative;
-
-  background: linear-gradient(
-    145deg,
-    rgba(255, 95, 109, 0.18),
-    rgba(71, 226, 255, 0.18),
-    rgba(155, 107, 255, 0.18)
-  );
-
-  background-size: 300% 300%;
-  animation: cardGlow 8s ease infinite;
-
-  border: 1px solid rgba(255,255,255,0.08);
-  border-radius: var(--radius);
-
-  transition:
-    transform .35s cubic-bezier(.2,.8,.2,1),
-    box-shadow .35s cubic-bezier(.2,.8,.2,1);
-}
-
-@keyframes cardGlow {
-  0%   { background-position: 0% 40%; }
-  50%  { background-position: 100% 60%; }
-  100% { background-position: 0% 40%; }
-}
-
-.jiggle-color:hover {
-  transform: translateY(-6px) scale(1.03);
-  box-shadow: 0 20px 45px rgba(0,0,0,0.7);
-}
-
-/* ----------------------------------------------------------
-   FOOTER
----------------------------------------------------------- */
-.footer {
-  text-align: center;
-  padding: 40px;
-  color: var(--muted);
+.timetable-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 4px; /* Row gap */
   font-size: 14px;
 }
+
+.timetable-table th { text-align: left; padding: 0 10px; color: var(--text-muted); font-size: 12px; font-weight: 500; }
+.timetable-table td { background: rgba(255,255,255,0.03); padding: 8px 10px; first-child: border-radius: 6px 0 0 6px; last-child: border-radius: 0 6px 6px 0; }
+.timetable-table tr:hover td { background: rgba(255,255,255,0.06); }
+
+.timetable-table input, .timetable-table select {
+  background: transparent; border: none; color: #fff; width: 100%; font-family: inherit; font-size: 13px;
+}
+.timetable-table input:focus { border-bottom: 1px solid var(--primary); outline: none; }
+
+/* ----------------------------------------------------------
+   7. SUBJECT LIST
+---------------------------------------------------------- */
+.ltps-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+.ltps-col label { display: block; font-size: 11px; color: var(--text-muted); margin-bottom: 4px; text-transform: uppercase; }
+.ltps-col input { width: 100%; background: var(--bg-input); border: none; border-radius: 6px; padding: 6px; color: white; margin-bottom: 4px; font-size: 12px; }
+
+.subject-item {
+  background: rgba(255,255,255,0.03);
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 12px;
+  border: 1px solid transparent;
+  transition: 0.2s;
+}
+.subject-item:hover { border-color: rgba(255,255,255,0.1); background: rgba(255,255,255,0.05); }
+
+.sub-top { display: flex; justify-content: space-between; margin-bottom: 10px; }
+.small { font-size: 12px; color: var(--text-muted); font-weight: 400; margin-left: 6px; }
+
+.progress-track { background: rgba(255,255,255,0.1); height: 6px; border-radius: 3px; overflow: hidden; margin-bottom: 8px; }
+.progress-fill { background: var(--primary); height: 100%; border-radius: 3px; transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 0 10px var(--primary); }
+
+/* ----------------------------------------------------------
+   8. CALCULATOR SEGMENTS
+---------------------------------------------------------- */
+.seg { display: flex; background: rgba(0,0,0,0.3); padding: 4px; border-radius: 10px; margin-bottom: 16px; gap: 4px; }
+.seg-btn { flex: 1; background: transparent; border: none; color: var(--text-muted); padding: 8px; border-radius: 8px; font-size: 12px; cursor: pointer; transition: 0.2s; }
+.seg-btn:hover { color: white; }
+.seg-btn.active { background: rgba(255,255,255,0.1); color: white; font-weight: 600; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
+
+/* ----------------------------------------------------------
+   9. SIDEBAR STATS
+---------------------------------------------------------- */
+.score { text-align: center; margin-bottom: 20px; }
+.score-val { font-size: 48px; font-weight: 800; background: linear-gradient(to right, #fff, #94a3b8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.score-label { color: var(--text-muted); font-size: 14px; text-transform: uppercase; letter-spacing: 1px; }
+.stat { background: rgba(255,255,255,0.05); padding: 12px; border-radius: 8px; text-align: center; font-size: 13px; margin-bottom: 16px; border: 1px solid rgba(255,255,255,0.05); }
+
+/* ----------------------------------------------------------
+   10. MODAL & TOAST
+---------------------------------------------------------- */
+.modal { position: fixed; top:0; left:0; width:100%; height:100%; z-index:999; display:flex; justify-content:center; align-items:center; }
+.modal-bg { position: absolute; width:100%; height:100%; background: rgba(0,0,0,0.6); backdrop-filter: blur(4px); }
+.modal-card { position: relative; width: 320px; background: #1c1c1e; border: 1px solid var(--border-light); border-radius: 16px; padding: 24px; box-shadow: 0 20px 50px rgba(0,0,0,0.5); transform: scale(0.95); animation: popIn 0.2s forwards; }
+@keyframes popIn { to { transform: scale(1); } }
+
+/* Toast Notification */
+#toast-container { position: fixed; bottom: 20px; right: 20px; z-index: 1000; display: flex; flex-direction: column; gap: 10px; }
+.toast { background: rgba(30, 30, 35, 0.9); border: 1px solid var(--border-light); color: #fff; padding: 12px 20px; border-radius: 10px; font-size: 14px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); animation: slideIn 0.3s ease-out; display: flex; align-items: center; gap: 10px; backdrop-filter: blur(10px); }
+@keyframes slideIn { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
