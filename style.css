@@ -1,23 +1,173 @@
-/* --- Soft Colorful Glow (Style B) --- */
+/* ----------------------------------------------------------
+   GLOBAL VARIABLES
+---------------------------------------------------------- */
+:root {
+  --radius: 18px;
+  --text: #ffffff;
+  --muted: #b4b4b4;
+  --bg: #000;
+  --card-bg: rgba(20, 20, 20, 0.7);
+}
 
+/* ----------------------------------------------------------
+   BASE / THEME
+---------------------------------------------------------- */
+body.apple-black {
+  background: var(--bg);
+  color: var(--text);
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: #8baaff;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+a:hover {
+  opacity: 0.8;
+}
+
+/* ----------------------------------------------------------
+   NAVBAR
+---------------------------------------------------------- */
+.nav {
+  width: 100%;
+  padding: 18px 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  background: rgba(0,0,0,0.8);
+  backdrop-filter: blur(12px);
+  z-index: 100;
+}
+
+.brand {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.dot {
+  color: #7c7cfe;
+}
+
+.nav-center {
+  display: flex;
+  gap: 28px;
+}
+
+.nav-link {
+  color: var(--muted);
+  font-size: 15px;
+  transition: .2s ease;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: var(--text);
+}
+
+.btn-ghost {
+  padding: 8px 18px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.15);
+  color: var(--text);
+  background: transparent;
+  transition: .25s ease;
+}
+
+.btn-ghost:hover {
+  background: rgba(255,255,255,0.07);
+}
+
+/* ----------------------------------------------------------
+   HERO SECTION
+---------------------------------------------------------- */
+.hero {
+  text-align: center;
+  padding: 120px 20px 60px;
+}
+
+.hero-title {
+  font-size: 58px;
+  font-weight: 800;
+  margin: 0 0 16px;
+}
+
+.hero-sub {
+  font-size: 18px;
+  color: var(--muted);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.cta {
+  display: inline-block;
+  padding: 12px 26px;
+  background: #6366f1;
+  border-radius: 12px;
+  color: #fff;
+  font-weight: 600;
+  transition: .25s ease;
+}
+
+.cta:hover {
+  opacity: 0.85;
+}
+
+.cta.ghost {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.15);
+}
+
+/* ----------------------------------------------------------
+   FEATURE CARDS
+---------------------------------------------------------- */
+.cards.apple-center {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 32px;
+  padding: 40px 0 90px;
+  text-align: center;
+}
+
+/* Base card style */
+.card {
+  width: 300px;
+  padding: 26px;
+  border-radius: var(--radius);
+  background: var(--card-bg);
+  backdrop-filter: blur(8px);
+  color: var(--text);
+  box-shadow: 0 0 22px rgba(0,0,0,0.35);
+}
+
+/* ----------------------------------------------------------
+   JIGEL JIGEL — Soft Colorful Glow (Style B)
+---------------------------------------------------------- */
 .jiggle-color {
   position: relative;
+
   background: linear-gradient(
     145deg,
-    rgba(255, 95, 109, 0.12),
-    rgba(71, 226, 255, 0.12),
-    rgba(155, 107, 255, 0.12)
+    rgba(255, 95, 109, 0.18),
+    rgba(71, 226, 255, 0.18),
+    rgba(155, 107, 255, 0.18)
   );
+
   background-size: 300% 300%;
   animation: cardGlow 8s ease infinite;
 
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255,255,255,0.08);
   border-radius: var(--radius);
 
-  padding: 24px;
-  backdrop-filter: blur(4px);
-
-  transition: 
+  transition:
     transform .35s cubic-bezier(.2,.8,.2,1),
     box-shadow .35s cubic-bezier(.2,.8,.2,1);
 }
@@ -28,18 +178,17 @@
   100% { background-position: 0% 40%; }
 }
 
-/* Hover Lift */
 .jiggle-color:hover {
   transform: translateY(-6px) scale(1.03);
-  box-shadow: 0 14px 40px rgba(0,0,0,0.6);
+  box-shadow: 0 20px 45px rgba(0,0,0,0.7);
 }
 
-/* Centered Cards */
-.cards.apple-center {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 28px;
-  padding: 40px 0;
+/* ----------------------------------------------------------
+   FOOTER
+---------------------------------------------------------- */
+.footer {
   text-align: center;
+  padding: 40px;
+  color: var(--muted);
+  font-size: 14px;
 }
