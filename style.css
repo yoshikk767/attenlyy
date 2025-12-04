@@ -45,4 +45,48 @@
   padding: 40px 0;
   text-align: center;
 }
+.cards.apple-center {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 28px;
+  padding: 40px 0;
+  text-align: center;
+}
+/* --- Soft Colorful Glow (Style B) --- */
+
+.jiggle-color {
+  position: relative;
+  background: linear-gradient(
+    145deg,
+    rgba(255, 95, 109, 0.12),
+    rgba(71, 226, 255, 0.12),
+    rgba(155, 107, 255, 0.12)
+  );
+  background-size: 300% 300%;
+  animation: cardGlow 8s ease infinite;
+
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: var(--radius);
+
+  padding: 24px;
+  backdrop-filter: blur(4px);
+  transition: 
+      transform .35s cubic-bezier(.2,.8,.2,1),
+      box-shadow .35s cubic-bezier(.2,.8,.2,1);
+}
+
+@keyframes cardGlow {
+  0%   { background-position: 0% 40%; }
+  50%  { background-position: 100% 60%; }
+  100% { background-position: 0% 40%; }
+}
+
+/* Hover Lift */
+.jiggle-color:hover {
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 14px 40px rgba(0,0,0,0.6);
+}
+
+
 
