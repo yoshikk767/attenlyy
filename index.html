@@ -4,36 +4,55 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Powerful Planner — Home</title>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
-  <div class="home-container" style="max-width:900px; margin:auto; padding:60px 20px; text-align:center; font-family:'Plus Jakarta Sans',sans-serif;">
-    <h1 style="font-size:48px; font-weight:800; margin-bottom:10px;">Powerful Planner</h1>
-    <p style="font-size:18px; color:var(--muted); max-width:680px; margin:auto;">
-      Smart timetable + Attendance Calculator (LTPS ready) — notifications, realtime tracking, and absence simulation.
-    </p>
-    <div style="margin-top:40px;">
-      <a href="app.html" class="btn-primary" style="padding:14px 32px; border-radius:10px; font-size:18px; font-weight:700; text-decoration:none;">Open Calculator</a>
+<body class="apple-black">
+  <header class="nav">
+    <div class="nav-left">
+      <div class="brand">Powerful<span class="dot">•</span>Planner</div>
     </div>
-    <div style="margin-top:60px; display:flex; gap:18px; justify-content:center; flex-wrap:wrap;">
-      <div class="card" style="max-width:320px; text-align:left;">
-        <h2 style="margin:0 0 10px 0; font-size:18px;">What it does</h2>
-        <ul style="list-style:none; padding:0; margin:0; line-height:1.6; color:var(--muted); font-size:14px;">
-          <li>• Repeating weekly timetable (upload or create)</li>
-          <li>• Browser notifications for upcoming classes</li>
-          <li>• Real-time attendance with LTPS weightings</li>
-          <li>• Absence simulation & leave calculator</li>
-        </ul>
-      </div>
+    <nav class="nav-center">
+      <a href="index.html" class="nav-link active">Home</a>
+      <a href="app.html" class="nav-link">App</a>
+      <a href="#features" class="nav-link">Features</a>
+      <a href="#about" class="nav-link">About</a>
+    </nav>
+    <div class="nav-right">
+      <a class="btn-ghost" href="app.html">Open App</a>
+    </div>
+  </header>
 
-      <div class="card" style="max-width:320px; text-align:left;">
-        <h2 style="margin:0 0 10px 0; font-size:18px;">Get started</h2>
-        <p style="color:var(--muted); font-size:14px; line-height:1.6;">
-          Click Open Calculator → create/upload your timetable → let the app notify you and maintain attendance counts.
-        </p>
-      </div>
+  <main class="hero">
+    <h1 class="hero-title">Powerful Planner</h1>
+    <p class="hero-sub">Smart timetable · Real-time LTPS attendance · Clean, private, browser-first</p>
+    <div style="margin-top:28px;">
+      <a class="cta" href="app.html">Open Calculator</a>
+      <a class="cta ghost" href="#features" style="margin-left:12px">Learn more</a>
     </div>
-  </div>
+  </main>
+
+  <section id="features" class="cards">
+    <div class="card small">
+      <h3>Timetable</h3>
+      <p>Upload or create a weekly timetable. Repeats every week. Notifications before class.</p>
+    </div>
+    <div class="card small">
+      <h3>Attendance</h3>
+      <p>General, KL (LTPS weighted), and custom calculators. Live subject trackers and bunk planner.</p>
+    </div>
+    <div class="card small">
+      <h3>Privacy</h3>
+      <p>All data stored locally in your browser — no server, no account required.</p>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div>© <span id="year"></span> Powerful Planner — Local-first · LTPS</div>
+  </footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
 </body>
 </html>
