@@ -4,132 +4,98 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Powerful Planner — App</title>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
-  <div class="app">
-    <header>
-      <div class="logo-area">
-        <div class="logo" onclick="confetti()">🎉</div>
-        <div>
-          <h1 style="margin:0; font-size:18px">Powerful Planner</h1>
-          <div style="font-size:12px; color:var(--muted)">LTPS Edition (Smart Timetable)</div>
-        </div>
-      </div>
+<body class="apple-black app-page">
+  <header class="nav nav-small">
+    <div class="nav-left">
+      <div class="brand">Powerful<span class="dot">•</span>Planner</div>
+    </div>
+    <nav class="nav-center">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="app.html" class="nav-link active">App</a>
+    </nav>
+    <div class="nav-right">
+      <button id="notifBtn" class="btn-ghost">Enable Notifications</button>
+      <button id="themeToggle" class="btn-ghost">Theme</button>
+    </div>
+  </header>
 
-      <div style="display:flex; gap:10px; align-items:center;">
-        <button class="btn-ghost" id="notifBtn">Enable Notifications</button>
-        <button class="btn-ghost" id="themeToggle" style="height:32px">Theme</button>
-      </div>
-    </header>
-
-    <main>
-      <!-- Timetable Card -->
-      <div class="card" style="margin-bottom: 20px;">
-        <h3 style="margin:0 0 12px 0; font-size:16px;">Weekly Timetable</h3>
-        <div style="display:flex; gap:12px; align-items:center; margin-bottom:12px;">
-          <button class="btn-primary" id="btnAddRow">Add Row</button>
-          <input type="file" id="uploadTT" accept=".json,.csv" style="display:inline-block;">
-          <button class="btn-ghost" id="exportTT">Export Timetable</button>
-          <button class="btn-ghost" id="resetTT" style="margin-left:auto;color:var(--danger);border-color:var(--danger)">Reset Timetable</button>
-        </div>
-
-        <div id="timetableContainer" style="overflow:auto;"></div>
-
-        <div style="margin-top:12px; color:var(--muted); font-size:13px;">
-          Note: Timetable repeats weekly. Times are local. Add a row for each hour slot.
-        </div>
-      </div>
-
-      <!-- Rapid Add Attendance (existing style) -->
-      <div class="card" style="margin-bottom: 18px;">
-        <h3 style="margin:0 0 12px 0; font-size:16px;">Quick Subject Inputs</h3>
-        <div class="main-inputs">
-          <input type="text" id="inName" placeholder="Subject Name" style="text-align:left; padding:10px;">
-          <input type="number" id="inReq" placeholder="Req %" value="75">
-          <button class="btn-primary" id="btnAdd">Add Subject</button>
-        </div>
-
-        <div class="ltps-grid">
-          <div class="ltps-col">
-            <span class="ltps-label">Lecture (1.0)</span>
-            <div class="ltps-inputs">
-              <input type="number" id="inL_att" placeholder="Att">
-              <input type="number" id="inL_tot" placeholder="Tot">
-            </div>
-          </div>
-          <div class="ltps-col">
-            <span class="ltps-label">Tutorial (0.25)</span>
-            <div class="ltps-inputs">
-              <input type="number" id="inT_att" placeholder="Att">
-              <input type="number" id="inT_tot" placeholder="Tot">
-            </div>
-          </div>
-          <div class="ltps-col">
-            <span class="ltps-label">Practical (0.5)</span>
-            <div class="ltps-inputs">
-              <input type="number" id="inP_att" placeholder="Att">
-              <input type="number" id="inP_tot" placeholder="Tot">
-            </div>
-          </div>
-          <div class="ltps-col">
-            <span class="ltps-label">Skilling (0.25)</span>
-            <div class="ltps-inputs">
-              <input type="number" id="inS_att" placeholder="Att">
-              <input type="number" id="inS_tot" placeholder="Tot">
-            </div>
+  <div class="container grid">
+    <main class="panel">
+      <!-- Timetable -->
+      <section class="panel-card">
+        <div class="panel-head">
+          <h2>Weekly Timetable</h2>
+          <div class="controls">
+            <button id="btnAddRow" class="btn-sm">Add Row</button>
+            <input id="uploadTT" type="file" accept=".json,.csv" class="file-input">
+            <button id="exportTT" class="btn-ghost">Export</button>
+            <button id="resetTT" class="btn-danger">Reset</button>
           </div>
         </div>
-      </div>
+        <div id="timetableContainer" class="tt-wrap"></div>
+      </section>
+
+      <!-- Quick add -->
+      <section class="panel-card">
+        <h2>Quick Subject</h2>
+        <div class="row">
+          <input id="inName" placeholder="Subject name" class="input" />
+          <input id="inReq" type="number" placeholder="Req %" class="input small" value="75" />
+          <button id="btnAdd" class="btn-primary">Add</button>
+        </div>
+
+        <div class="ltps-grid compact">
+          <div class="ltps-col"><label>Lecture</label><input id="inL_att" placeholder="att"><input id="inL_tot" placeholder="tot"></div>
+          <div class="ltps-col"><label>Tutorial</label><input id="inT_att" placeholder="att"><input id="inT_tot" placeholder="tot"></div>
+          <div class="ltps-col"><label>Practical</label><input id="inP_att" placeholder="att"><input id="inP_tot" placeholder="tot"></div>
+          <div class="ltps-col"><label>Skilling</label><input id="inS_att" placeholder="att"><input id="inS_tot" placeholder="tot"></div>
+        </div>
+      </section>
 
       <!-- Calculators -->
-      <div class="card" style="margin-bottom:18px;">
-        <h3 style="margin:0 0 12px 0; font-size:16px;">Attendance Calculators</h3>
-
-        <div style="display:flex; gap:10px; margin-bottom:12px;">
-          <button class="btn-ghost" id="calcGeneral">General</button>
-          <button class="btn-ghost" id="calcKL">KL (LTPS)</button>
-          <button class="btn-ghost" id="calcCustom">Custom</button>
-          <button class="btn-ghost" id="calcAbsent">Simulate Absents</button>
+      <section class="panel-card">
+        <h2>Calculators</h2>
+        <div class="seg">
+          <button id="calcGeneral" class="seg-btn active">General</button>
+          <button id="calcKL" class="seg-btn">KL (LTPS)</button>
+          <button id="calcCustom" class="seg-btn">Custom</button>
+          <button id="calcAbsent" class="seg-btn">Simulate Absents</button>
         </div>
+        <div id="calcArea" class="calc-area"></div>
+      </section>
 
-        <div id="calcArea"></div>
-      </div>
-
-      <!-- Subject list / insights -->
-      <div id="subjectList"></div>
+      <!-- Subject list -->
+      <section id="subjectList" class="panel-card"></section>
     </main>
 
-    <aside>
-      <div class="card" style="position:sticky; top:20px;">
-        <div class="score-circle" id="overallCircle">
-          <div class="score-val" id="overallVal">0%</div>
-          <div class="score-label">Weighted Avg</div>
+    <aside class="side">
+      <div class="panel-card sticky">
+        <div class="score">
+          <div id="overallVal" class="score-val">0%</div>
+          <div class="score-label">Aggregate</div>
         </div>
-        <div id="statBox" style="padding: 12px; background:var(--glass); border-radius:10px; font-size:13px; color:var(--muted); margin-bottom:16px;">
-          Add subjects and timetable to see your safety margin.
-        </div>
-        <button class="btn-ghost" onclick="clearData()" style="width:100%">Reset All Data</button>
+        <div id="statBox" class="stat">Add subjects & timetable</div>
+        <button class="btn-ghost full" onclick="clearData()">Reset Data</button>
       </div>
     </aside>
   </div>
 
   <!-- Modal -->
-  <div id="modalRoot" style="position:fixed; inset:0; display:none; align-items:center; justify-content:center; z-index:60;">
-    <div id="modalBg" style="position:absolute; inset:0; background:rgba(2,6,23,0.6)"></div>
-    <div style="position:relative; z-index:70; width:440px; max-width:95%;">
-      <div class="card" id="modalCard">
-        <div id="modalContent"></div>
-        <div style="display:flex; gap:10px; justify-content:flex-end; margin-top:14px;">
-          <button class="btn-ghost" id="modalCancel">Cancel</button>
-          <button class="btn-primary" id="modalConfirm">Confirm</button>
-        </div>
+  <div id="modalRoot" class="modal" style="display:none">
+    <div id="modalBg" class="modal-bg"></div>
+    <div class="modal-card">
+      <div id="modalContent"></div>
+      <div class="modal-actions">
+        <button id="modalCancel" class="btn-ghost">Cancel</button>
+        <button id="modalConfirm" class="btn-primary">Confirm</button>
       </div>
     </div>
   </div>
 
-  <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
